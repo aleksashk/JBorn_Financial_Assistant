@@ -1,7 +1,7 @@
 package com.philimonov;
 
-public class Main {
+public class Starter {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new FinancialAssistant().start();
     }
 }
