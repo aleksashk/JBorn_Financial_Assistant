@@ -16,11 +16,11 @@ public class AccountService {
         this.accountDtoConverter = new AccountModelToAccountDtoConverter();
     }
 
-    public List<AccountDto> findAllByPersonId(int personId) {
+    public List<AccountDTO> findAllByPersonId(int personId) {
         return accountDao.findAllByPersonId(personId).stream().map(accountDtoConverter::convert).collect(Collectors.toList());
     }
 
-    public AccountDto insert(String name, long amount, int personId) {
+    public AccountDTO insert(String name, long amount, int personId) {
         return Optional.ofNullable(accountDao.insert(name, amount, personId)).map(accountDtoConverter::convert).orElse(null);
     }
 

@@ -1,11 +1,11 @@
 package com.philimonov.view;
 
-import com.philimonov.service.PersonDto;
+import com.philimonov.service.PersonDTO;
 
 public class PersonalCabinet {
-    private final PersonDto person;
+    private final PersonDTO person;
 
-    public PersonalCabinet(PersonDto person) {
+    public PersonalCabinet(PersonDTO person) {
         this.person = person;
     }
 

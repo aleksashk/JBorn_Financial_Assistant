@@ -1,9 +1,8 @@
 package com.philimonov.service;
 
-public class AccountDto {
+public class CategoryDTO {
     private int id;
     private String name;
-    private long amount;
 
     public int getId() {
         return id;
@@ -21,20 +20,11 @@ public class AccountDto {
         this.name = name;
     }
 
-    public long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(long amount) {
-        this.amount = amount;
-    }
-
     @Override
     public String toString() {
-        return "AccountDto{" +
+        return "CategoryDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", amount=" + amount +
                 '}';
     }
 }

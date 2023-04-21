@@ -1,12 +1,12 @@
 package com.philimonov.converter;
 
 import com.philimonov.dao.AccountModel;
-import com.philimonov.service.AccountDto;
+import com.philimonov.service.AccountDTO;
 
-public class AccountModelToAccountDtoConverter implements Converter<AccountModel, AccountDto>{
+public class AccountModelToAccountDtoConverter implements Converter<AccountModel, AccountDTO>{
     @Override
-    public AccountDto convert(AccountModel source) {
-        AccountDto accountDto = new AccountDto();
+    public AccountDTO convert(AccountModel source) {
+        AccountDTO accountDto = new AccountDTO();
         accountDto.setId(source.getId());
         accountDto.setName(source.getName());
         accountDto.setAmount(source.getAmount());

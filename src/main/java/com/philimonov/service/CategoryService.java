@@ -16,17 +16,17 @@ public class CategoryService {
         this.categoryDtoConverter = new CategoryModelToCategoryDtoConverter();
     }
 
-    public List<CategoryDto> findAllByPersonId(int personId) {
+    public List<CategoryDTO> findAllByPersonId(int personId) {
         return categoryDao.findAllByPersonId(personId).stream().map(categoryDtoConverter::convert).collect(Collectors.toList());
     }
 
-    public CategoryDto insert(String name, int personId) {
+    public CategoryDTO insert(String name, int personId) {
         return Optional.ofNullable(categoryDao.insert(name, personId))
                 .map(categoryDtoConverter::convert)
                 .orElse(null);
     }
 
-    public CategoryDto update(String name, int id, int personId) {
+    public CategoryDTO update(String name, int id, int personId) {
         return Optional.ofNullable(categoryDao.update(name, id, personId)).map(categoryDtoConverter::convert).orElse(null);
     }
 

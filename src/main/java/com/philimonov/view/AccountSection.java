@@ -1,17 +1,17 @@
 package com.philimonov.view;
 
-import com.philimonov.service.AccountDto;
+import com.philimonov.service.AccountDTO;
 import com.philimonov.service.AccountService;
-import com.philimonov.service.PersonDto;
+import com.philimonov.service.PersonDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public class AccountSection {
-    private final PersonDto personDto;
+    private final PersonDTO personDto;
     private final com.philimonov.service.AccountService accountService;
 
-    public AccountSection(PersonDto personDto) {
+    public AccountSection(PersonDTO personDto) {
         this.personDto = personDto;
         this.accountService = new AccountService();
     }
@@ -35,12 +35,12 @@ public class AccountSection {
     }
 
     public void showAccountsList() {
-        List<AccountDto> accountDtoList = accountService.findAllByPersonId(personDto.getId());
-        if (accountDtoList.isEmpty()) {
+        List<AccountDTO> accountDTOList = accountService.findAllByPersonId(personDto.getId());
+        if (accountDTOList.isEmpty()) {
             System.out.println("У вас нет счетов");
         } else {
             System.out.printf("%-15s %-30s %s%n", "Id счета", "Имя счета", "Сумма на счете (в копейках)");
-            for (AccountDto item : accountDtoList) {
+            for (AccountDTO item : accountDTOList) {
                 System.out.printf("%-15s %-30s %s%n", item.getId(), item.getName(), item.getAmount());
             }
         }
@@ -51,7 +51,7 @@ public class AccountSection {
         String accountName = Tools.getNewLine();
         System.out.println("Введите сумму на счете: ");
         long amount = Tools.getLongValue();
-        Optional<AccountDto> account = Optional.ofNullable(accountService.insert(accountName, amount, personDto.getId()));
+        Optional<AccountDTO> account = Optional.ofNullable(accountService.insert(accountName, amount, personDto.getId()));
         if (account.isPresent()) {
             System.out.println("Операция по созданию счёта выполнена успешно.");
         } else {

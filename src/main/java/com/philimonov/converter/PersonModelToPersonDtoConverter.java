@@ -1,12 +1,12 @@
 package com.philimonov.converter;
 
 import com.philimonov.dao.PersonModel;
-import com.philimonov.service.PersonDto;
+import com.philimonov.service.PersonDTO;
 
-public class PersonModelToPersonDtoConverter implements Converter<PersonModel, PersonDto> {
+public class PersonModelToPersonDtoConverter implements Converter<PersonModel, PersonDTO> {
     @Override
-    public PersonDto convert(PersonModel source) {
-        PersonDto personDto = new PersonDto();
+    public PersonDTO convert(PersonModel source) {
+        PersonDTO personDto = new PersonDTO();
         personDto.setId(source.getId());
         personDto.setEmail(source.getEmail());
 

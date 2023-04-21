@@ -15,7 +15,7 @@ public class AuthService {
         this.personDtoConverter = new PersonModelToPersonDtoConverter();
     }
 
-    public PersonDto auth(String email, String password) {
+    public PersonDTO auth(String email, String password) {
         String hash = digestService.hex(password);
         PersonModel personModel = personDao.findByEmailAndHash(email, hash);
         if (personModel == null) {
@@ -24,7 +24,7 @@ public class AuthService {
         return personDtoConverter.convert(personModel);
     }
 
-    public PersonDto registration(String email, String password) {
+    public PersonDTO registration(String email, String password) {
         String hash = digestService.hex(password);
         PersonModel personModel = personDao.insert(email, hash);
         if (personModel == null) {

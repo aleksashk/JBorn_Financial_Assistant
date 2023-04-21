@@ -1,17 +1,17 @@
 package com.philimonov.view;
 
-import com.philimonov.service.CategoryDto;
+import com.philimonov.service.CategoryDTO;
 import com.philimonov.service.CategoryService;
-import com.philimonov.service.PersonDto;
+import com.philimonov.service.PersonDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public class CategorySection {
-    private final PersonDto personDto;
+    private final PersonDTO personDto;
     private final CategoryService categoryService;
 
-    public CategorySection(PersonDto personDto) {
+    public CategorySection(PersonDTO personDto) {
         this.personDto = personDto;
         this.categoryService = new CategoryService();
     }
@@ -37,12 +37,12 @@ public class CategorySection {
     }
 
     public void showAllCategories() {
-        List<CategoryDto> categoryList = categoryService.findAllByPersonId(personDto.getId());
+        List<CategoryDTO> categoryList = categoryService.findAllByPersonId(personDto.getId());
         if (categoryList.isEmpty()) {
             System.out.println("У Вас пока нет типов транзакций.");
         } else {
             System.out.printf("%-15s %s%n", "Id типа", "Имя типа");
-            for (CategoryDto category : categoryList) {
+            for (CategoryDTO category : categoryList) {
                 System.out.printf("%-15s %s%n", category.getId(), category.getName());
             }
         }
@@ -51,7 +51,7 @@ public class CategorySection {
     public void createCategory() {
         System.out.print("Введите название нового типа транзакций: ");
         String name = Tools.getNewLine();
-        Optional<CategoryDto> category = Optional.ofNullable(categoryService.insert(name, personDto.getId()));
+        Optional<CategoryDTO> category = Optional.ofNullable(categoryService.insert(name, personDto.getId()));
         if (category.isPresent()) {
             System.out.println("Операция выполнена успешно. Новый тип транзакций создан.");
         } else {
@@ -64,7 +64,7 @@ public class CategorySection {
         int id = Tools.getIntValue();
         System.out.print("Введите новое название для этого типа транзакций: ");
         String name = Tools.getNewLine();
-        Optional<CategoryDto> category = Optional.ofNullable(categoryService.update(name, id, personDto.getId()));
+        Optional<CategoryDTO> category = Optional.ofNullable(categoryService.update(name, id, personDto.getId()));
         if (category.isPresent()) {
             System.out.println("Операция выполнена успешно. Указанный тип транзакций изменен.");
         } else {

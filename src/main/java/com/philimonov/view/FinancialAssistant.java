@@ -1,7 +1,7 @@
 package com.philimonov.view;
 
 import com.philimonov.service.AuthService;
-import com.philimonov.service.PersonDto;
+import com.philimonov.service.PersonDTO;
 
 import java.util.Optional;
 
@@ -37,7 +37,7 @@ public class FinancialAssistant {
             return;
         }
         String password = Tools.getPassword();
-        Optional<PersonDto> person = Optional.ofNullable(authService.auth(email, password));
+        Optional<PersonDTO> person = Optional.ofNullable(authService.auth(email, password));
         if (person.isPresent()) {
             new PersonalCabinet(person.get()).showMenu();
         } else {
@@ -52,7 +52,7 @@ public class FinancialAssistant {
             return;
         }
         String password = Tools.getPassword();
-        Optional<PersonDto> person = Optional.ofNullable(authService.registration(email, password));
+        Optional<PersonDTO> person = Optional.ofNullable(authService.registration(email, password));
         if (person.isPresent()) {
             System.out.println("Регистрация выполнена успешно.");
         } else {

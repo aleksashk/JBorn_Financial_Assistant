@@ -1,6 +1,6 @@
 package com.philimonov.service;
 
-public class PersonDto {
+public class PersonDTO {
     private int id;
     private String email;
 
@@ -22,7 +22,7 @@ public class PersonDto {
 
     @Override
     public String toString() {
-        return "PersonDto{" +
+        return "PersonDTO{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 '}';
