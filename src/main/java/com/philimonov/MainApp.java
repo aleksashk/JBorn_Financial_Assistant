@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Main {
+public class MainApp {
     public static Connection CONNECTION;
     public static String MESSAGE;
     public static final String URL = "jdbc:postgresql://localhost:5432/postgres";
