@@ -7,7 +7,6 @@ import com.philimonov.dao.CategoryDao;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -39,10 +38,12 @@ public class CategoryService {
     public boolean delete(int id, int personId) {
         return true;
     }
-    public List<ReportCategoryDTO> getIncomeReportByCategory(Date from, Date to, int personId){
+
+    public List<ReportCategoryDTO> getIncomeReportByCategory(Date from, Date to, int personId) {
         return categoryDao.getIncomeReportByCategory(from, to, personId).stream().map(reportCategoryDtoConverter::convert).collect(toList());
     }
-    public List<ReportCategoryDTO>getExpenseReportByCategory(Date from, Date to, int personId){
+
+    public List<ReportCategoryDTO> getExpenseReportByCategory(Date from, Date to, int personId) {
         return categoryDao.getExpenseReportByCategory(from, to, personId).stream().map(reportCategoryDtoConverter::convert).collect(toList());
     }
 }
