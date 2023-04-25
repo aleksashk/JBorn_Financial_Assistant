@@ -5,6 +5,8 @@ import com.philimonov.service.PersonDTO;
 
 import java.util.Optional;
 
+import static com.philimonov.service.ServiceFactory.getAuthService;
+
 public class FinancialAssistant {
     public static void main(String[] args) {
         new FinancialAssistant().showMenu();
@@ -13,7 +15,7 @@ public class FinancialAssistant {
     private final AuthService authService;
 
     public FinancialAssistant() {
-        this.authService = new AuthService();
+        this.authService = getAuthService();
     }
 
     private void showMenu() {

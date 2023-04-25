@@ -3,9 +3,13 @@ package com.philimonov.view;
 import com.philimonov.service.CategoryDTO;
 import com.philimonov.service.CategoryService;
 import com.philimonov.service.PersonDTO;
+import com.philimonov.service.ReportCategoryDTO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static com.philimonov.service.ServiceFactory.getCategoryService;
 
 public class CategorySection {
     private final PersonDTO personDto;
@@ -13,13 +17,13 @@ public class CategorySection {
 
     public CategorySection(PersonDTO personDto) {
         this.personDto = personDto;
-        this.categoryService = new CategoryService();
+        this.categoryService = getCategoryService();
     }
 
     public void showMenu() {
         System.out.println("Управление типами транзакций.");
         String[] sectionMenu = {"Показать список типов транзакций", "Создать новый тип транзакций",
-                "Редактировать тип транзакций", "Удалить тип транзакций", "Выйти"};
+                "Редактировать тип транзакций", "Удалить тип транзакций", "Показать доход по типам транзакций за период времени", "Показать расход по типам транзакций за период времени", "Выйти"};
         while (true) {
             String choice = Tools.getSelectedMenuItem(sectionMenu);
             if ("Выйти".equals(choice)) {
@@ -32,6 +36,9 @@ public class CategorySection {
                 editCategory();
             } else if ("Удалить тип транзакций".equals(choice)) {
                 deleteCategory();
+            }else if ("Показать доход по типам транзакций за период времени".equals(choice)) {showIncomeReportByCategory();
+            }else if ("Показать расход по типам транзакций за период времени".equals(choice)) {
+                showExpenseReportByCategory();
             }
         }
     }
@@ -80,6 +87,37 @@ public class CategorySection {
             System.out.println("Операция выполнена успешно. Указанный тип транзакций удален.");
         } else {
             System.out.println("Возникла ошибка при удалении типа транзакций. Тип транзакций не был удален.");
+        }
+    }
+    public void showIncomeReportByCategory() {
+        System.out.print("Введите дату начала периода времени (в формате dd-MM-yyyy): ");
+        Date from = Tools.getDateFromInput();
+        System.out.print("Введите дату окончания периода времени (в формате dd-MM-yyyy): ");
+        Date to = Tools.getDateFromInput();
+        List<ReportCategoryDTO> reportsList = categoryService.getIncomeReportByCategory(from, to, personDto.getId());
+        if (reportsList.isEmpty()) {
+            System.out.println("Вы не проводили транзакции за указанный период времени.");
+        } else {
+            System.out.printf("%-30s %s%n", "Тип транзакции", "Доход по типу транзакций (в копейках)");
+            for (ReportCategoryDTO report : reportsList) {
+                System.out.printf("%-30s %s%n", report.getName() , report.getAmount());
+            }
+        }
+    }
+
+    public void showExpenseReportByCategory() {
+        System.out.print("Введите дату начала периода времени (в формате dd-MM-yyyy): ");
+        Date from = Tools.getDateFromInput();
+        System.out.print("Введите дату окончания периода времени (в формате dd-MM-yyyy): ");
+        Date to = Tools.getDateFromInput();
+        List<ReportCategoryDTO> reportsList = categoryService.getExpenseReportByCategory(from, to, personDto.getId());
+        if (reportsList.isEmpty()) {
+            System.out.println("Вы не проводили транзакции за указанный период времени.");
+        } else {
+            System.out.printf("%-30s %s%n", "Тип транзакции", "Расход по типу транзакций (в копейках)");
+            for (ReportCategoryDTO report : reportsList) {
+                System.out.printf("%-30s %s%n", report.getName() , report.getAmount());
+            }
         }
     }
 }

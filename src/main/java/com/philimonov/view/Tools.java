@@ -1,5 +1,9 @@
 package com.philimonov.view;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Tools {
@@ -94,6 +98,17 @@ public class Tools {
                 return Integer.parseInt(scanner.nextLine());
             }catch (NumberFormatException e){
                 System.out.println("Некорректный ввод. Повторите заново: ");
+            }
+        }
+    }
+
+    public static Date getDateFromInput() {
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        while (true){
+            try{
+                return format.parse(scanner.nextLine());
+            } catch (ParseException e) {
+                System.out.println("Неверный формат даты. Попробуйте еще раз.");
             }
         }
     }

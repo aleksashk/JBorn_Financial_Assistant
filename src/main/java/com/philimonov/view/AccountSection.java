@@ -7,13 +7,15 @@ import com.philimonov.service.PersonDTO;
 import java.util.List;
 import java.util.Optional;
 
+import static com.philimonov.service.ServiceFactory.getAccountService;
+
 public class AccountSection {
     private final PersonDTO personDto;
     private final com.philimonov.service.AccountService accountService;
 
     public AccountSection(PersonDTO personDto) {
         this.personDto = personDto;
-        this.accountService = new AccountService();
+        this.accountService = getAccountService();
     }
 
     public void showMenu() {

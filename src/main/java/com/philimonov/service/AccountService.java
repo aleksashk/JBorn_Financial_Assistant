@@ -11,9 +11,9 @@ public class AccountService {
     private final AccountDao accountDao;
     private final AccountModelToAccountDtoConverter accountDtoConverter;
 
-    public AccountService() {
-        this.accountDao = new AccountDao();
-        this.accountDtoConverter = new AccountModelToAccountDtoConverter();
+    public AccountService(AccountDao accountDao, AccountModelToAccountDtoConverter accountDtoConverter) {
+        this.accountDao = accountDao;
+        this.accountDtoConverter = accountDtoConverter;
     }
 
     public List<AccountDTO> findAllByPersonId(int personId) {
