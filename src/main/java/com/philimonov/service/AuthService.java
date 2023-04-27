@@ -1,15 +1,15 @@
 package com.philimonov.service;
 
-import com.philimonov.converter.PersonModelToPersonDtoConverter;
+import com.philimonov.converter.Converter;
 import com.philimonov.dao.PersonDao;
 import com.philimonov.dao.PersonModel;
 
 public class AuthService {
     private final PersonDao personDao;
     private final DigestService digestService;
-    private final PersonModelToPersonDtoConverter personDtoConverter;
+    private final Converter<PersonModel, PersonDTO> personDtoConverter;
 
-    public AuthService(PersonDao personDao, DigestService digestService, PersonModelToPersonDtoConverter personDtoConverter) {
+    public AuthService(PersonDao personDao, DigestService digestService, Converter<PersonModel, PersonDTO> personDtoConverter) {
         this.personDao = personDao;
         this.digestService = digestService;
         this.personDtoConverter = personDtoConverter;

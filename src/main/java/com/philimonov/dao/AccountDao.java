@@ -1,8 +1,6 @@
 package com.philimonov.dao;
 
 import com.philimonov.exception.CustomException;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,15 +14,11 @@ import java.util.List;
 public class AccountDao {
     private final DataSource dataSource;
 
-    public AccountDao() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
-        config.setUsername("postgres");
-        config.setPassword("password");
-        this.dataSource = new HikariDataSource(config);
+    public AccountDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public List<AccountModel> findAllByPersonId(int personId){
+    public List<AccountModel> findAllByPersonId(int personId) {
         List<AccountModel> accountList = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
             String query = "select * from account where person_id = ?;";
@@ -36,6 +30,7 @@ public class AccountDao {
                 accountModel.setId(rs.getInt("id"));
                 accountModel.setName(rs.getString("name"));
                 accountModel.setAmount(rs.getLong("amount"));
+                accountModel.setPersonId(personId);
                 accountList.add(accountModel);
             }
         } catch (SQLException e) {
@@ -44,7 +39,10 @@ public class AccountDao {
         return accountList;
     }
 
-    public AccountModel insert(String name, long amount, int personId){
+    public AccountModel insert(String name, long amount, int personId) {
+        if (amount < 0) {
+            throw new CustomException("Сумма на создаваемом счете не может быть отрицательной.");
+        }
         AccountModel accountModel = null;
         try (Connection connection = dataSource.getConnection()) {
             String query = "insert into account (name, amount, person_id) values (?, ?, ?);";
@@ -67,7 +65,7 @@ public class AccountDao {
         return accountModel;
     }
 
-    public boolean delete(int id, int personId){
+    public boolean delete(int id, int personId) {
         try (Connection connection = dataSource.getConnection()) {
             String query = "delete from account where id = ? and person_id = ?;";
             PreparedStatement ps = connection.prepareStatement(query);

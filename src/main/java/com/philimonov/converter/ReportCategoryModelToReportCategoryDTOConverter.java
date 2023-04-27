@@ -3,7 +3,7 @@ package com.philimonov.converter;
 import com.philimonov.dao.ReportCategoryModel;
 import com.philimonov.service.ReportCategoryDTO;
 
-public class ReportCategoryModelToReportCategoryDtoConverter implements Converter<ReportCategoryModel, ReportCategoryDTO> {
+public class ReportCategoryModelToReportCategoryDTOConverter implements Converter<ReportCategoryModel, ReportCategoryDTO> {
     @Override
     public ReportCategoryDTO convert(ReportCategoryModel source) {
         ReportCategoryDTO reportCategoryDTO = new ReportCategoryDTO();

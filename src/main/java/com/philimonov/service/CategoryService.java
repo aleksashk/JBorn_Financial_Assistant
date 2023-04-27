@@ -1,8 +1,11 @@
 package com.philimonov.service;
 
 import com.philimonov.converter.CategoryModelToCategoryDtoConverter;
-import com.philimonov.converter.ReportCategoryModelToReportCategoryDtoConverter;
+import com.philimonov.converter.Converter;
+import com.philimonov.converter.ReportCategoryModelToReportCategoryDTOConverter;
 import com.philimonov.dao.CategoryDao;
+import com.philimonov.dao.CategoryModel;
+import com.philimonov.dao.ReportCategoryModel;
 
 import java.util.Date;
 import java.util.List;
@@ -12,10 +15,12 @@ import static java.util.stream.Collectors.toList;
 
 public class CategoryService {
     private final CategoryDao categoryDao;
-    private final CategoryModelToCategoryDtoConverter categoryDtoConverter;
-    private final ReportCategoryModelToReportCategoryDtoConverter reportCategoryDtoConverter;
+    private final Converter<CategoryModel, CategoryDTO> categoryDtoConverter;
+    private final Converter<ReportCategoryModel, ReportCategoryDTO> reportCategoryDtoConverter;
 
-    public CategoryService(CategoryDao categoryDao, CategoryModelToCategoryDtoConverter categoryDtoConverter, ReportCategoryModelToReportCategoryDtoConverter reportCategoryDtoConverter) {
+    public CategoryService(CategoryDao categoryDao,
+                           Converter<CategoryModel, CategoryDTO> categoryDtoConverter,
+                           Converter<ReportCategoryModel, ReportCategoryDTO> reportCategoryDtoConverter) {
         this.categoryDao = categoryDao;
         this.categoryDtoConverter = categoryDtoConverter;
         this.reportCategoryDtoConverter = reportCategoryDtoConverter;
@@ -36,7 +41,7 @@ public class CategoryService {
     }
 
     public boolean delete(int id, int personId) {
-        return true;
+        return categoryDao.delete(id, personId);
     }
 
     public List<ReportCategoryDTO> getIncomeReportByCategory(Date from, Date to, int personId) {
