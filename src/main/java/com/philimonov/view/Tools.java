@@ -112,4 +112,14 @@ public class Tools {
             }
         }
     }
+
+    public static long getLongFromInput() {
+        while (true) {
+            try {
+                return Long.parseLong(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.print("Ошибка. Нечисловые данные. Повторите ввод: ");
+            }
+        }
+    }
 }
