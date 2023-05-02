@@ -2,7 +2,9 @@ package com.philimonov.converter;
 
 import com.philimonov.dao.ReportCategoryModel;
 import com.philimonov.service.ReportCategoryDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReportCategoryModelToReportCategoryDTOConverter implements Converter<ReportCategoryModel, ReportCategoryDTO> {
     @Override
     public ReportCategoryDTO convert(ReportCategoryModel source) {

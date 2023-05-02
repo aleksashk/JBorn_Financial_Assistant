@@ -1,6 +1,7 @@
 package com.philimonov.dao;
 
 import com.philimonov.exception.CustomException;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class AccountDao {
     private final DataSource dataSource;
 

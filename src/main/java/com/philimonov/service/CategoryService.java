@@ -1,11 +1,10 @@
 package com.philimonov.service;
 
-import com.philimonov.converter.CategoryModelToCategoryDtoConverter;
 import com.philimonov.converter.Converter;
-import com.philimonov.converter.ReportCategoryModelToReportCategoryDTOConverter;
 import com.philimonov.dao.CategoryDao;
 import com.philimonov.dao.CategoryModel;
 import com.philimonov.dao.ReportCategoryModel;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+@Service
 public class CategoryService {
     private final CategoryDao categoryDao;
     private final Converter<CategoryModel, CategoryDTO> categoryDtoConverter;

@@ -1,6 +1,7 @@
 package com.philimonov.dao;
 
 import com.philimonov.exception.CustomException;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class TransactionDao {
     private final DataSource dataSource;
 

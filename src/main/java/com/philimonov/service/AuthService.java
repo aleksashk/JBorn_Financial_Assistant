@@ -3,7 +3,9 @@ package com.philimonov.service;
 import com.philimonov.converter.Converter;
 import com.philimonov.dao.PersonDao;
 import com.philimonov.dao.PersonModel;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthService {
     private final PersonDao personDao;
     private final DigestService digestService;

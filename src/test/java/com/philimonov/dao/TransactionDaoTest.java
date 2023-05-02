@@ -4,34 +4,31 @@ import com.philimonov.exception.CustomException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TransactionDaoTest {
 
     TransactionDao transactionDao;
     AccountDao accountDao;
+    ApplicationContext context;
 
     @Before
     public void setUp() throws Exception {
-        System.setProperty("jdbcUrl","jdbc:h2:mem:test_mem" + UUID.randomUUID());
+        System.setProperty("jdbcUrl", "jdbc:h2:mem:test_mem" + UUID.randomUUID());
         System.setProperty("jdbcUser", "sa");
-        System.setProperty("jdbcPassword","");
-        System.setProperty("liquibaseFile","liquibase_transaction_dao_test.xml");
-        transactionDao = DaoFactory.getTransactionDao();
-        accountDao = DaoFactory.getAccountDao();
-    }
-
-    @After
-    public void reset() {
-        DaoFactory.setTransactionDaoToNull();
-        DaoFactory.setDataSourceToNull();
-        DaoFactory.setAccountDaoToNull();
+        System.setProperty("jdbcPassword", "");
+        System.setProperty("liquibaseFile", "liquibase_transaction_dao_test.xml");
+        context = new AnnotationConfigApplicationContext("com.philimonov");
+        transactionDao = context.getBean(TransactionDao.class);
+        accountDao = context.getBean(AccountDao.class);
     }
 
     @Test
@@ -90,7 +87,8 @@ public class TransactionDaoTest {
         try {
             transactionDao.insert(20000L, 1000, 2,
                     Collections.singletonList(1), 1);
-        } catch (CustomException ignore) {}
+        } catch (CustomException ignore) {
+        }
         accounts = accountDao.findAllByPersonId(1);
         accounts.sort(Comparator.comparingInt(AccountModel::getId));
         long sourceAmountAfterTransaction = accounts.get(0).getAmount();
@@ -109,7 +107,8 @@ public class TransactionDaoTest {
         try {
             transactionDao.insert(20000L, 1, 1000,
                     Collections.singletonList(1), 1);
-        } catch (CustomException ignore) {}
+        } catch (CustomException ignore) {
+        }
         accounts = accountDao.findAllByPersonId(1);
         accounts.sort(Comparator.comparingInt(AccountModel::getId));
         long sourceAmountAfterTransaction = accounts.get(0).getAmount();
@@ -128,7 +127,8 @@ public class TransactionDaoTest {
         try {
             transactionDao.insert(20000L, 1, 2,
                     Collections.singletonList(0), 1);
-        } catch (CustomException ignore) {}
+        } catch (CustomException ignore) {
+        }
         accounts = accountDao.findAllByPersonId(1);
         accounts.sort(Comparator.comparingInt(AccountModel::getId));
         long sourceAmountAfterTransaction = accounts.get(0).getAmount();

@@ -1,16 +1,16 @@
 package com.philimonov.service;
 
-import com.philimonov.converter.AccountModelToAccountDtoConverter;
 import com.philimonov.converter.Converter;
 import com.philimonov.dao.AccountDao;
 import com.philimonov.dao.AccountModel;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
+@Service
 public class AccountService {
     private final AccountDao accountDao;
     private final Converter<AccountModel, AccountDTO> accountDtoConverter;

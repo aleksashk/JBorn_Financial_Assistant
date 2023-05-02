@@ -5,21 +5,17 @@ import com.philimonov.service.PersonDTO;
 
 import java.util.Optional;
 
-import static com.philimonov.service.ServiceFactory.getAuthService;
+import static com.philimonov.FinancialAssistant.getAuthService;
 
-public class FinancialAssistant {
-    public static void main(String[] args) {
-        new FinancialAssistant().showMenu();
-    }
-
+public class Authentication {
     private final AuthService authService;
 
-    public FinancialAssistant() {
+    public Authentication() {
         this.authService = getAuthService();
     }
 
-    private void showMenu() {
-        String[] mainMenu = {"Войти в личный кабинет", "Зарегистрироваться", "Выйти"};
+    public void showMenu() {
+        String[] mainMenu = { "Войти в личный кабинет", "Зарегистрироваться", "Выйти" };
         while (true) {
             String choice = Tools.getSelectedMenuItem(mainMenu);
             if ("Войти в личный кабинет".equals(choice)) {
@@ -58,7 +54,7 @@ public class FinancialAssistant {
         if (person.isPresent()) {
             System.out.println("Регистрация выполнена успешно.");
         } else {
-            System.out.println("При регистрации возникли проблемы. Возможно этот email уже зарегистрирован.");
+            System.out.println("При регистрации возникли проблемы. Регистрация не была выполнена.");
         }
     }
 }

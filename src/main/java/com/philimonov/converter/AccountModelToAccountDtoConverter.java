@@ -2,8 +2,10 @@ package com.philimonov.converter;
 
 import com.philimonov.dao.AccountModel;
 import com.philimonov.service.AccountDTO;
+import org.springframework.stereotype.Service;
 
-public class AccountModelToAccountDtoConverter implements Converter<AccountModel, AccountDTO>{
+@Service
+public class AccountModelToAccountDtoConverter implements Converter<AccountModel, AccountDTO> {
     @Override
     public AccountDTO convert(AccountModel source) {
         AccountDTO accountDto = new AccountDTO();

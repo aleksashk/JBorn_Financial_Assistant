@@ -4,6 +4,8 @@ import com.philimonov.exception.CustomException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,20 +15,18 @@ import static org.junit.Assert.*;
 public class AccountDaoTest {
 
     AccountDao accountDao;
+    ApplicationContext context;
+
     @Before
     public void setUp() throws Exception {
         System.setProperty("jdbcUrl","jdbc:h2:mem:test_mem" + UUID.randomUUID());
         System.setProperty("jdbcUser", "sa");
         System.setProperty("jdbcPassword","");
         System.setProperty("liquibaseFile","liquibase_account_dao_test.xml");
-        accountDao = DaoFactory.getAccountDao();
+        context = new AnnotationConfigApplicationContext("com.philimonov");
+        accountDao = context.getBean(AccountDao.class);
     }
 
-    @After
-    public void reset() {
-        DaoFactory.setAccountDaoToNull();
-        DaoFactory.setDataSourceToNull();
-    }
     @Test
     public void findAllByPersonIdSuccess() {
         List<AccountModel> accounts = accountDao.findAllByPersonId(1);

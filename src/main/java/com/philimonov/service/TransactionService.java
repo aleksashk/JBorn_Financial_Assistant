@@ -3,9 +3,11 @@ package com.philimonov.service;
 import com.philimonov.converter.Converter;
 import com.philimonov.dao.TransactionDao;
 import com.philimonov.dao.TransactionModel;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TransactionService {
     private final TransactionDao transactionDao;
     private final Converter<TransactionModel, TransactionDTO> transactionDtoConverter;

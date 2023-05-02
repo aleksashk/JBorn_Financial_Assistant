@@ -4,6 +4,8 @@ import com.philimonov.exception.CustomException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +14,7 @@ import static org.junit.Assert.*;
 
 public class CategoryDaoTest {
     CategoryDao categoryDao;
+    ApplicationContext context;
 
     @Before
     public void setUp() throws Exception {
@@ -19,13 +22,8 @@ public class CategoryDaoTest {
         System.setProperty("jdbcUser", "sa");
         System.setProperty("jdbcPassword","");
         System.setProperty("liquibaseFile","liquibase_category_dao_test.xml");
-        categoryDao = DaoFactory.getCategoryDao();
-    }
-
-    @After
-    public void reset() {
-        DaoFactory.setCategoryDaoToNull();
-        DaoFactory.setDataSourceToNull();
+        context = new AnnotationConfigApplicationContext("com.philimonov");
+        categoryDao = context.getBean(CategoryDao.class);
     }
 
     @Test
