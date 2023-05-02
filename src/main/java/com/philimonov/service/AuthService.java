@@ -5,6 +5,8 @@ import com.philimonov.dao.PersonDao;
 import com.philimonov.dao.PersonModel;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
     private final PersonDao personDao;
@@ -28,11 +30,7 @@ public class AuthService {
 
     public PersonDTO registration(String email, String password) {
         String hash = digestService.hex(password);
-        PersonModel personModel = personDao.insert(email, hash);
-        if (personModel == null) {
-            return null;
-        }
-        return personDtoConverter.convert(personModel);
+        return Optional.ofNullable(personDao.insert(email, hash)).map(personDtoConverter::convert).orElse(null);
     }
 }
 

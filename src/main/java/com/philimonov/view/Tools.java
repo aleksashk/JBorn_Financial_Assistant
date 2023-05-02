@@ -70,11 +70,11 @@ public class Tools {
         return input;
     }
 
-    private static boolean checkEmail(String email) {
+    public static boolean checkEmail(String email) {
         return email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
     }
 
-    private static boolean checkPassword(String password) {
+    public static boolean checkPassword(String password) {
         return password.length() > 5;
     }
 

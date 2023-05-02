@@ -5,17 +5,22 @@ import com.philimonov.service.PersonDTO;
 
 import java.util.Optional;
 
-import static com.philimonov.FinancialAssistant.getAuthService;
+import static com.philimonov.SpringContext.getContext;
 
 public class Authentication {
+
+    public static void main(String[] args) {
+        new Authentication().showMenu();
+    }
+
     private final AuthService authService;
 
     public Authentication() {
-        this.authService = getAuthService();
+        this.authService = getContext().getBean(AuthService.class);
     }
 
     public void showMenu() {
-        String[] mainMenu = { "Войти в личный кабинет", "Зарегистрироваться", "Выйти" };
+        String[] mainMenu = {"Войти в личный кабинет", "Зарегистрироваться", "Выйти"};
         while (true) {
             String choice = Tools.getSelectedMenuItem(mainMenu);
             if ("Войти в личный кабинет".equals(choice)) {
