@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+
+    <!-- Authorisation and registration -->
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>com.philimonov.web.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>com.philimonov.web.RegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+
+    <!-- Accounts -->
+    <servlet>
+        <servlet-name>ShowAllAccountsServlet</servlet-name>
+        <servlet-class>com.philimonov.web.ShowAllAccountsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllAccountsServlet</servlet-name>
+        <url-pattern>/show-accounts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateAccountServlet</servlet-name>
+        <servlet-class>com.philimonov.web.CreateAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateAccountServlet</servlet-name>
+        <url-pattern>/create-account</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <servlet-class>com.philimonov.web.DeleteAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <url-pattern>/delete-account</url-pattern>
+    </servlet-mapping>
+
+    <!-- Categories -->
+    <servlet>
+        <servlet-name>ShowAllCategoriesServlet</servlet-name>
+        <servlet-class>com.philimonov.web.ShowAllCategoriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllCategoriesServlet</servlet-name>
+        <url-pattern>/show-categories</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateCategoryServlet</servlet-name>
+        <servlet-class>com.philimonov.web.CreateCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCategoryServlet</servlet-name>
+        <url-pattern>/create-category</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteCategoryServlet</servlet-name>
+        <servlet-class>com.philimonov.web.DeleteCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCategoryServlet</servlet-name>
+        <url-pattern>/delete-category</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <servlet-class>com.philimonov.web.UpdateCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <url-pattern>/update-category</url-pattern>
+    </servlet-mapping>
+
+    <!-- Transactions -->
+    <servlet>
+        <servlet-name>CreateTransactionServlet</servlet-name>
+        <servlet-class>com.philimonov.web.CreateTransactionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateTransactionServlet</servlet-name>
+        <url-pattern>/create-transaction</url-pattern>
+    </servlet-mapping>
+
+    <!-- Reports -->
+    <servlet>
+        <servlet-name>ShowIncomeReportServlet</servlet-name>
+        <servlet-class>com.philimonov.web.ShowIncomeReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowIncomeReportServlet</servlet-name>
+        <url-pattern>/show-income</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowExpenseReportServlet</servlet-name>
+        <servlet-class>com.philimonov.web.ShowExpenseReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowExpenseReportServlet</servlet-name>
+        <url-pattern>/show-expense</url-pattern>
+    </servlet-mapping>
+
+</web-app>

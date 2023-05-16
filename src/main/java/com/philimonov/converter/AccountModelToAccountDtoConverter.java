@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class AccountModelToAccountDtoConverter implements Converter<AccountModel, AccountDTO> {
     @Override
     public AccountDTO convert(AccountModel source) {
-        AccountDTO accountDto = new AccountDTO();
-        accountDto.setId(source.getId());
-        accountDto.setName(source.getName());
-        accountDto.setAmount(source.getAmount());
-        return accountDto;
+        AccountDTO accountDTO = new AccountDTO();
+        accountDTO.setId(source.getId());
+        accountDTO.setName(source.getName());
+        accountDTO.setAmount(source.getAmount());
+        return accountDTO;
     }
 }

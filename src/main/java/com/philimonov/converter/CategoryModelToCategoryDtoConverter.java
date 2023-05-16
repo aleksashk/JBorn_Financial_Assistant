@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 public class CategoryModelToCategoryDtoConverter implements Converter<CategoryModel, CategoryDTO> {
     @Override
     public CategoryDTO convert(CategoryModel source) {
-        CategoryDTO categoryDto = new CategoryDTO();
-        categoryDto.setId(source.getId());
-        categoryDto.setName(source.getName());
-        return categoryDto;
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setId(source.getId());
+        categoryDTO.setName(source.getName());
+        return categoryDTO;
     }
 }

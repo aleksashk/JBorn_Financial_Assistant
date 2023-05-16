@@ -23,15 +23,15 @@ public class AccountDao {
     public List<AccountModel> findAllByPersonId(int personId) {
         List<AccountModel> accountList = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
-            String query = "select * from account where person_id = ?;";
+            String query = "select * from account where person_id = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setLong(1, personId);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
                 AccountModel accountModel = new AccountModel();
-                accountModel.setId(rs.getInt("id"));
-                accountModel.setName(rs.getString("name"));
-                accountModel.setAmount(rs.getLong("amount"));
+                accountModel.setId(resultSet.getInt("id"));
+                accountModel.setName(resultSet.getString("name"));
+                accountModel.setAmount(resultSet.getLong("amount"));
                 accountModel.setPersonId(personId);
                 accountList.add(accountModel);
             }
@@ -43,11 +43,11 @@ public class AccountDao {
 
     public AccountModel insert(String name, long amount, int personId) {
         if (amount < 0) {
-            throw new CustomException("Сумма на создаваемом счете не может быть отрицательной.");
+            throw new CustomException("Суммф на новом счете не может быть отрицательной!");
         }
         AccountModel accountModel = null;
         try (Connection connection = dataSource.getConnection()) {
-            String query = "insert into account (name, amount, person_id) values (?, ?, ?);";
+            String query = "insert into account(name, amount, person_id) values(?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
             ps.setLong(2, amount);
@@ -69,7 +69,7 @@ public class AccountDao {
 
     public boolean delete(int id, int personId) {
         try (Connection connection = dataSource.getConnection()) {
-            String query = "delete from account where id = ? and person_id = ?;";
+            String query = "delete from account where id = ? and person_id = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ps.setInt(2, personId);

@@ -1,6 +1,6 @@
 package com.philimonov.dao;
 
-public class AccountModel {
+public class AccountModel{
     private int id;
     private String name;
     private long amount;

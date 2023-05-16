@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 public class PersonModelToPersonDtoConverter implements Converter<PersonModel, PersonDTO> {
     @Override
     public PersonDTO convert(PersonModel source) {
-        PersonDTO personDto = new PersonDTO();
-        personDto.setId(source.getId());
-        personDto.setEmail(source.getEmail());
-
-        return personDto;
+        PersonDTO personDTO = new PersonDTO();
+        personDTO.setId(source.getId());
+        personDTO.setEmail(source.getEmail());
+        return personDTO;
     }
 }
